@@ -1,0 +1,380 @@
+/* PSEUDO-SELECTOR
+    Es un elemento que no existe como tal en el HTML. 
+    :root Es una forma de almacenar variables de CSS, que se le conoce como Custom Properties. En esta vamos a definir una paleta de colores
+*/
+
+:root {
+    /* Se puede meter cualquier valor. En este caso, es una paleta de colores para la pagina web en notación Hexadecimal*/
+    --blanco: #ffffff;
+    --negro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --gris: #757575;
+    --gris_claro: #DFE9F3;
+}
+
+
+/* CSS: Colores, tamaños, espacios, animaciones, margenes, adaptaciones en diferentes dispositivos...
+Son hojas de estilo en cascada
+1. selector (misma etiqueta que en HTML)
+2. delimitado por {}
+3. por dentro se le coloca una propiedad (pertenece a CSS) propiedad: valor
+4. se coloca un valor y al final se coloca punto y coma (;)
+Por lo general toma el ultimo valor, se puede saltar por medio de la especificidad
+CSS3 
+Se espera que se quede asi
+** Se recomienda tener solo una hoja de estilos
+*/
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+}
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+/* 
+(*) Es un selector universal
+(,) Para ahorrar algunas lineas de codigo
+(before - after) Es un pseudoelemento 
+*/
+body{
+    font-size: 16px; /* 1 rem = 10px ... Se adapta el sitio web a diferentes pantallas*/
+    font-family: 'Krub', sans-serif; 
+    background-image: linear-gradient(to top, var(--gris_claro) 0%, var(--blanco) 100%);
+}
+
+.sombra{
+    -webkit-box-shadow: 5px 5px 15px 0px rgba(112,112,112,0.5);
+    -moz-box-shadow: 5px 5px 15px 0px rgba(112,112,112,0.5);
+    box-shadow: 5px 5px 15px 0px rgba(112,112,112,0.5);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+h1{
+    /* El text-alig por defecto es izquierda*/
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 3.8rem; 
+}
+h2{
+    font-size: 2.8rem;
+}
+h3{
+    font-size: 1.8rem;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+span {
+    font-size: 2rem;
+}
+/* Las clases son mejores porque son reutilizables que los elementos HTMl... No se puede iniciar el nombre con un número
+Es mejor poner nombres que tengan sentido... */
+.titulo{
+    text-align: center;
+    font-size: 3.8rem; 
+    /* Variable de CSS... Estas variables se pueden utilizar en diferentes elementos, para asignarles un valor. 
+        Si se hace un cambio en el diseño, en el color, solo se cambia en una parte y automaticamente se cambia en el resto de la pagina web */
+    color: var(primario);
+    /* En caso que no tenga Arial, busca una Helvetica, si tampoco lo encuentra sans-serif*/
+    font-family: 'Krub', sans-serif;
+}
+
+.titulo span {
+    font-size: 2rem;
+}
+/* NO SON recomendables los ID's, afectan las especificidad... 
+Se puede tener varios ID's por documentos, pero se deben guardar con diferentes nombres*/
+/* ESPECIFICIDAD EN CSS
+    Son hojas de estilo en cascada, es decir, toma la ultima instrucción copiada. (Utiliza la ultima de regla en la hoja de estilo, va de arriba hacia abajo.
+    Entre más especifico sea el selector, este se selecciona más facil, independiente donde se encuentra en el documento
+    ** Se refiere a como el navegador va a mostrar el CSS de acuerdo a que tan específico es el selector que hemos creado. **
+    ** CSS es en cascada, eso NO significa que si un selector aparece después será tomado en cuneta sino más bien su especificidad. **
+    *** Si un elemento tiene un selector más especifico NO importa mucho donde haya sido declarado, CSS decidirá por su ESPECIFICIDAD ***
+*/
+/* El !important es la ultima opción, se le pasa por encima a todo el mundo, pero no es recomendable, por su poca especificidad*/
+/*
+span {
+    color: green !important
+}
+*/
+.contenedor {
+    /*Para centrar donde esta Inicio-Sobre mi-Clientes-Contacto*/
+    max-width: 120rem;
+    /*margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto; */
+    /*Esto es lo mismo de arriba, se ahorra uno lineas, funciona como las manecillas del reloj Top-Right-Bottom-Left*/
+    margin: 0 auto 0 auto
+}
+.boton{
+    background-color: var(--secundario);
+    color:var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    width: 90%;
+    text-align: center;
+    border: none;
+}
+.boton:hover {
+    cursor: pointer;
+}
+
+.enviar .boton {
+    width: 100%;
+}
+@media (min-width: 480px){
+    .boton{
+        width: auto;
+    }
+}
+/*UTILIDADES*/
+.w-100 {
+    width: 100%;
+}
+@media (min-width: 768px){
+    .w-100{
+        width: auto;
+    }
+}
+.flex {
+    display: flex;
+}
+.alinear-derecha {
+    justify-content: flex-end;
+}
+.nav-bg{
+    background-color: var(--secundario);
+}
+/* Esto sirve para toda la barra en general.
+Esto me engorda mi navegación principal (La franja principal).
+ Al solo poner 1 rem, toma esa medida para las otras direcciones (es envolvente)*/
+.navegacion-principal {
+    /*Para avilitar justify-content*/
+    display: flex;
+}
+/*Para los enlaces como tal*/
+.navegacion-principal a {
+    padding: 1rem;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.navegacion-principal a:hover {
+    background-color: var(--primario);
+    color: var(--negro);
+}
+
+.hero {
+    background-image: url(../hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 410px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+.contenido-hero{
+    position: absolute;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contenido-hero h2,
+.contenido-hero p {
+    color: var(--blanco);
+}
+.ubicacion{
+    display: flex;
+    align-items: flex-end ;
+}
+
+/*Tenemos el enfoque de acceder a una clase y luego a sus etiquetas.
+Existen varios tipos de enfoques.
+** BEM: Bloques - Elementos - Modificadores
+    (clase)
+    .card{}
+    (elementos)
+    .card__titulo{}
+    .card__boton{}
+    (modificadores)
+    .card__boton--activo{}
+** Utility first
+    .text-center {}
+    .color-red-100 {}
+    Se tiene una propiedad y un valor por clase 
+** Modulos: (Este es el enfoque en este proyecto de ejemplo)
+    .card{}
+    .card h2{}
+    Se toma una clase y se va accediendo a cada una de las etiquetas.
+
+Se puede utilizar más de un enfoque por proyecto.
+*/
+
+/*
+RESPONSIVE WEB DESING 
+Es un enfoque que nos dice que nuestros diseños deberán adaptarse
+a las interacciones del usuario y a la resolución que utilizan. 
+Los sitios web deberán adaptarse a diferentes dispositivos... 
+Google penaliza los sitios que no se adaptan. 
+Esto se logra con MEDIA QUERIES
+@media (min-width: 480px){ Telefono movil
+}
+@media (min-width: 768px) { Tablet
+}
+@media (min-width: 1140px) { Computadora - Laptop
+}
+@media (min-width: 1400px) { Computadora - Laptop
+}
+*/
+
+@media (min-width: 768px) {
+  .navegacion-principal{
+    flex-direction: row;
+    justify-content:space-between;
+  }
+}
+
+/* 
+CSS BOX MODEL 
+Todo en CSS es una caja. El tamaño de lo que se muestra en pantalla esta 
+delimitado por 4 cosas: 
+    1. Tamaño del contenido 
+    2. Tamaño del relleno (padding)
+    3. Tamaño del borde 
+    4. Tamaño de la margen
+
+*/
+
+@media (min-width: 768px){
+    .servicios{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 1rem;
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: normal;
+}
+.servicio p {
+    line-height: 2;
+    text-align: center;
+}
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+/* 
+CSS GRID 
+    * Permite definir la ubicación y tamaño de los elementos del sitio web 
+    * El contenido se agrupa dentro de un área definida
+    * En cierta forma es como una tabla de HTML
+        --> Con la ventaja de mayor flexibilidad y control sobre tu diseño
+    * Se puede controlar en las dimensiones
+    * Algunos diseños son más faciles en CSS Grid 
+      --> Otros diseños son más faciles en Flexbox
+      --> Lo puedes utilizar juntos en un mismo diseño
+
+*/
+/*
+Utiliza Flexbox 
+    Para la alineación o distribución de los 
+    elementos que estarán dentro de contenedores
+Utiliza CSS Grid
+    Para definir el Layout del sitio web, como
+    pueden ser las columnas o contenedores de 
+    elementos
+Utiliza Floats
+    NUNCA 
+*/
+
+.formulario {
+    background-color: var(--gris);
+    width: min(60rem, 100%); /* Utiliza el valor más pequeño*/
+    margin: 0 auto; /*Para un elemento como un formulario, y cuyo padre no tenga un display flex*/
+    padding: 2rem;
+    border-radius: 1rem;
+
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario)
+}
+
+@media (min-width: 768px){
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem;
+    }
+    .campos:nth-child(3) {
+        grid-column: 1 / 3;
+    }
+    .campos:nth-child(4) {
+        grid-column: 1 / 3;
+    }
+}
+
+.campos {
+    margin-bottom: 1rem;
+}
+.campos label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.campos textarea {
+    height: 18rem;
+}
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+.footer {
+    text-align: center;
+}
+ 
+.navegacion-principal,
+.servicios,
+.formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
